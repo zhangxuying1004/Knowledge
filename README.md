@@ -15,4 +15,16 @@ annotation{
 }
 ```
 注：在COCO数据集中，每个图片至少有5个描述语句（部分图片可能更多）。     
+## 3、image caption中常用的评价指标介绍  
+**（1）BLEU得分**    
+通常需要计算BLEU-1，BLEU-2，BLEU-3，BLEU-4，后面的数字k表示k元组。  
+
+**（2）METEOR得分**  
+
+**（3）ROUGE-L得分**   
+
+**（4）CIDEr得分**   
+
+**（5）SPICE得分**   
+
 
