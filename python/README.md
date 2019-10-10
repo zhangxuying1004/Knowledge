@@ -47,37 +47,7 @@ import numpy as np
 2.8 np.split(array, indices_or_sections, axis)
 沿指定轴将数组分割为子数组，等分或者在指定位置处分割。
 ```
-## 3、```python *args, **kwargs```的用法     
-```python
-def foo(*args, **kwargs):
-    print('args = ', args)
-    print('kwargs = ', kwargs)
-    print('---------------------------------------')
-
-if __name__ == '__main__':
-    foo(1, 2, 3, 4)
-    foo(a=1, b=2, c=3)
-    foo(1, 2, 3, 4, a=1, b=2, c=3)
-    foo('a', 1, None, a=1, b='2', c=3)
-运行结果：
-args =  (1, 2, 3, 4)
-kwargs =  {}
-'---------------------------------------'
-args =  ()
-kwargs =  {'a': 1, 'b': 2, 'c': 3}
-'---------------------------------------'
-args =  (1, 2, 3, 4)
-kwargs =  {'a': 1, 'b': 2, 'c': 3}
-'---------------------------------------'
-args =  ('a', 1, None)
-kwargs =  {'a': 1, 'b': '2', 'c': 3}
-'---------------------------------------'
-
-可以看到，这两个是python中的可变参数。*args表示任何多个无名参数，它是一个tuple；**kwargs表示关键字参数，它是一个dict。
-并且同时使用*args和**kwargs时，必须*args参数列要在**kwargs前，像python foo(a=1, b='2', c=3, a', 1, None, )这样调用
-的话，会提示语法错误 “SyntaxError: non-keyword arg after keyword arg”。
-```
-## 4、文件路径操作
+## 3、文件路径操作
 ```python
 # glob模块 
 from glob import glob
@@ -141,12 +111,12 @@ basename_prefix_paths:
 8
 9
 ```
-## 5、.txt文件存取   
+## 4、.txt文件存取   
 ```
-5.1 将数据存储到txt文件中
+4.1 将数据存储到txt文件中
 with open(filename.txt, 'w') as f:
     print(data, file=f)
-5.2 读取文件
+4.2 读取文件
 （1）方式1：
 data = np.loadtxt(filename.txt)
 （2）方式2：
@@ -156,28 +126,28 @@ with open('odom.txt', 'r') as f:
         temp = line.split()  # 将单个数据分隔开存好
         data = list(map(float, temp))  # 转化为浮点数
 ```
-## 6、.npz文件  
+## 5、.npz文件  
 ```
-6.1 npz对象
+5.1 npz对象
 常用属性
 1）files
 列出对.npz文件中，对各类数据的索引。
 2）f
 可以作为一种可选的方式执行Npzfile实例的索引。对象.f.索引<==>对象[‘索引’]
-6.2 存储方式
+5.2 存储方式
 Np.savez(filename, attr_name=data)    # eg: attr_name is points
-6.3 读取方式
+5.3 读取方式
 tmp = np.load(filename)
 data = tmp[‘points’]
 ```
-## 7、math模块   
+## 6、math模块   
 ```
-7.1 math的数学常数
+6.1 math的数学常数
 1）math.pi：圆周率
 2）math.e：自然对数
 3）math.inf：正无穷
 4）math.nan：非浮点数标记
-7.2 math的数值表示函数
+6.2 math的数值表示函数
 1）math.fabs(x)：返回x的绝对值
 2）math.fmod(x, y)：返回x%y
 3）math.fsum([x, y, …])：浮点数精确求和
@@ -194,7 +164,7 @@ data = tmp[‘points’]
 14）math.isfinite(x)：若x为无穷大，则返回True，否则返回False
 15）math.isinf(x)：若x为正数或负数无穷大，则返回True，否则返回False
 16）math.isnan(x)：若x为NaN，则返回True，否则返回False
-7.3 math的幂对数函数
+6.3 math的幂对数函数
 1）math. pow (x, y)：返回x的y次幂
 2）math.exp(x)：返回e的x次幂
 3）math.expml(x)：返回e的x次幂减1
@@ -203,7 +173,7 @@ data = tmp[‘points’]
 6）math.log1p(x)：返回1+x的自然对数
 7）math.log2(x, y)：返回x的2对数值
 8）math.log10(x)：返回x的2对数值
-7.4 math的三角运算函数
+6.4 math的三角运算函数
 1）math.degree(x)：角度x的弧度值转化为角度值
 2）math.radians(x)：角度x的角度值转化为弧度值
 3）math.hypot(x, y)：返回(x, y)坐标到原点(0, 0)的距离
@@ -221,7 +191,7 @@ data = tmp[‘points’]
 15）math.acosh(x)：arccosh x
 16）math.atanh(x)：arctanh x
 ```
-## 8、字符串类型的格式化   
+## 7、字符串类型的格式化   
 ```
 <模板字符串>.format(<逗号分隔的参数>)   
 其中，模板字符串由一系列槽组成，用来控制修改字符串中嵌入值出现的位置。   
@@ -231,7 +201,7 @@ data = tmp[‘points’]
 类型表示输出整数和浮点数类型的格式规则，对于整数类型，o输出整数的八进制方式，x输出整数的小写十六进制方式，X输出整数的
 大写十六进制方式；对于 浮点数，e/E输出科学计数法的形式，f输出浮点数的标准浮点形式，%输出浮点数的百分形式。
 ```
-## 9、lambda函数（匿名函数）
+## 8、lambda函数（匿名函数）
 ```
 <函数名> = lambda<参数列表> : <表达式>
 Lambda函数与正常的函数一样，等价于下面形式：   
@@ -244,27 +214,33 @@ def <函数名>(<参数列表>):
 >>> f(10, 12)
 22
 ```
-## 10、文件的写入和读取   
-10.1 JSON方式
+## 9、文件的写入和读取   
+9.1 JSON方式
 ```python
 import json
-```
 （1）文件写入
 json.dumps: 将 Python 对象编码成 JSON 字符串   
 ```python
 hp = hp = json.dumps(vars(hparams))
 with open(filename, 'w') as fout:
         fout.write(hp)
-```
 （2）文件的读取   
 json.loads: 将已编码的 JSON 字符串解码为 Python 对象。   
-```python
 d = open(os.path.join(path, "hparams"), 'r').read()
 flag2val = json.loads(d)
 for f, v in flag2val.items():
       parser.f = v
+      
+注：如果你要处理的不是字符串而是文件，则使用的是json.load()解码JSON数据。
+# 写入 JSON 数据
+with open('data.json', 'w') as f:
+    json.dump(data, f)
+ 
+# 读取数据
+with open('data.json', 'r') as f:
+    data = json.load(f)
 ```
-# 11、with语句
+# 10、with语句
 with语句适用于对资源进行访问的场合，确保不管使用过程中是否发生异常都会执行必要的“清理”操作，释放资源。比如文件使用后自动关闭，
 线程中锁的自动获取和释放等。   
 下面以文件操作为例进行说明：      
@@ -288,13 +264,13 @@ with open('xxx') as file:
 do something
 ```
 显然with语句能够减少冗长，还可以自动处理上下文环境产生的异常。   
-## 12、codecs：自然语言编码转换
+## 11、codecs：自然语言编码转换
 ```python
 import codecs
 # 用codecs提供的open方法来指定打开的文件的语言编码，它会在读取的时候自动转换为内部unicode
 with codecs.open(file, ‘r’, encode_type)
 ```
-## 13、python函数参数前面单星号与双星号的区别
+## 12、python函数参数前面单星号与双星号的区别
 （1）单星号（*）：*args，有两个用法
 用法一：将参数以元组的形式导入。例如：   
 ```python
