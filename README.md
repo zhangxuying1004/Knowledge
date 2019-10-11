@@ -8,6 +8,24 @@
 
 **（2）文件内容的格式** 
 ```python
+{
+    "info": info,
+    "licenses": [license],
+    "images": [image],
+    "annotations": [annotation]
+}
+其中：
+image{
+    "id": int,
+    "width": int,
+    "height": int,
+    "file_name": str,
+    "license": int,
+    "flickr_url": str,
+    "coco_url": str,
+    "date_captured": datetime,
+}
+
 annotation{
     "id": int,
     "image_id": int,
