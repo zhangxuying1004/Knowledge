@@ -72,7 +72,7 @@ with tf.variable_scope('foo'):
      v = tf.get_variable('v', [1])
 # 在生成上下文管理器时，将参数reuse设置为True，tf.get_variable函数将直接获取已经声明的变量
 with tf.variable_scope('foo'，reuse=True):
-     v = tf.get_variable('v', [1])
+     v1 = tf.get_variable('v', [1])
      print(v==v1)  # 输出为True
      # 将参数reuse设置为True时，tf.variable_scope将只能获取已经创建过的变量
      with tf.variable_scope('bar'):
