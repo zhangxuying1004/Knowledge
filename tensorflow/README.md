@@ -38,6 +38,7 @@ with tf.Session() as sess:
 3  
 0.131951  
 4  
+...
 ```
 显然，global_step能够在训练的过程中自动加一。  
 但是，如果把train_step = tf.train.GradientDescentOptimizer(learning_rate).minimize (loss, global_step =global_steps)后面部分的global_step=global_steps去掉，global_step的自动加一就会失效，输出如下：  
@@ -50,30 +51,31 @@ with tf.Session() as sess:
 0  
 0.1  
 0  
+...
 ```
 因为指数衰减的学习率是伴随global_step的变化而衰减的，所以当global_step不改变时，学习率也变成一个定值。   
 综上所述：损失函数优化器的minimize()中global_step = global_steps能够提供global_step自动加一的操作。  
-## 2、mnist数据集操作   
-70k = 55k + 5K+ 10K, 28x28  
+## 2、张量运算  
+2.1 加减法运算  
+a + b，要求两个张量的维度一致，若不一致，自动扩充后必须一致。  
+2.2 乘法运算   
+（1）按元素相乘   
+a * b 或者 tf.mul(a, b)，要求两个向量的维度一致  
+（2）矩阵相乘   
+tf.matmul(a, b)，要求满足矩阵运算的条件。  
+2.3 数据类型转换  
+target_v = tf.cast(source_v, dtype=tf.int32)  
+2.4 tensor类型与numpy类型的转换 
 ```python
-# 读取mnist数据集，MNIST_dir为数据集保存的位置  
-from tensorflow.examples.tutorials.minist import input_data
-mnist = input_data.read_data_sets(MNIST_dir,one_hot=True)
+# numpy array -> tensor
+tf.convert_to_tensor(numpy_data)
 
-# 获取全部训练数据
-mnist.train.images, mnist.train.labels
-# 获取全部验证数据
-mnist.validation.images, mnist.validation.labels 
-# 获取全部测试数据
-mnist.test.images, mnist.test.labels
-
-# 每次返回一个batch的训练数据（images+labels）
-mnist.train.next(batch_size)
-# 每次返回一个batch的验证数据（images+labels）
-mnist.validation.next(batch_size)
-每次返回一个batch的测试数据（images+labels）
-mnist.test.next(batch_size)
+# tensor -> numpy array
+with tf.Session() as sess:
+     sess.run(tensor_data)或者tensor_data.eval()
 ```
+2.5 转换维度顺序  
+tf.transpose(tensor_data, [dim1, dim2, ...])   
 ## 3、tf.variable_scope函数
 引用《Tensorflow实战Google深度学习框架》P108-P110   
 tf.variable_scope函数通常与tf.get_variable函数配套使用，因此，先对tf.get_variable函数进行说明。
