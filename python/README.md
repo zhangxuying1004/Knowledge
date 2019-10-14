@@ -140,56 +140,16 @@ Np.savez(filename, attr_name=data)    # eg: attr_name is points
 tmp = np.load(filename)
 data = tmp[‘points’]
 ```
-## 6、math模块   
-```
-6.1 math的数学常数
-1）math.pi：圆周率
-2）math.e：自然对数
-3）math.inf：正无穷
-4）math.nan：非浮点数标记
-6.2 math的数值表示函数
-1）math.fabs(x)：返回x的绝对值
-2）math.fmod(x, y)：返回x%y
-3）math.fsum([x, y, …])：浮点数精确求和
-4）math.ceil(x)：向上取整
-5）math.floor(x)：向下取整
-6）math.factorial(x)：返回x的阶乘
-7）math.gcd(x, y)：返回x和y的最大公约数
-8）math.frepx(x), x = m * 2e ：返回(m, e)
-9）math.ldexp(x, i)：返回x * 2^i的运算值，math.frepx(x)的反运算
-10）math.modf：返回x的小数和整数部分
-11）math.trunc：返回x的整数部分
-12）math.copysign(x, y)：用y的正负号替换x的正负号
-13）math.isclose(a, b)：比较a和b的相似性，返回True或False
-14）math.isfinite(x)：若x为无穷大，则返回True，否则返回False
-15）math.isinf(x)：若x为正数或负数无穷大，则返回True，否则返回False
-16）math.isnan(x)：若x为NaN，则返回True，否则返回False
-6.3 math的幂对数函数
-1）math. pow (x, y)：返回x的y次幂
-2）math.exp(x)：返回e的x次幂
-3）math.expml(x)：返回e的x次幂减1
-4）math.sqrt(x)：返回x的平方根
-5）math.log(x[,base])：返回x的对数值
-6）math.log1p(x)：返回1+x的自然对数
-7）math.log2(x, y)：返回x的2对数值
-8）math.log10(x)：返回x的2对数值
-6.4 math的三角运算函数
-1）math.degree(x)：角度x的弧度值转化为角度值
-2）math.radians(x)：角度x的角度值转化为弧度值
-3）math.hypot(x, y)：返回(x, y)坐标到原点(0, 0)的距离
-4）math.sin(x)：sin x
-5）math.cos(x)：cos x
-6）math.tan(x)：tan x
-7）math.asin(x, y)：arcsin x
-8）math.acos(x)：arccos x
-9）math.atan(x)：arctan x
-10）math.atan2(x, y)：arctan y/x
-11）math.sinh：sinh x
-12）math.cosh(x, y)：cosh x
-13）math.tanh (a, b)：tanh x
-14）math.asinh(x)：arcsinh x
-15）math.acosh(x)：arccosh x
-16）math.atanh(x)：arctanh x
+## 6、heapq模块(最大堆)   
+```python
+import heapq
+data = []
+# 将item推入到data里
+heapq.heappush(data, item)
+# 将最小元素从data中取出
+heapq.heappop(data)
+# 将item插入到data中,同时弹出data中的最小值，即取出n+1个元素中最小的那个元素
+heapq.heappushpop(data, item)
 ```
 ## 7、字符串类型的格式化   
 ```
