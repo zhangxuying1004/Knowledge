@@ -1,8 +1,33 @@
 # Tensorflow knowledge   
 ## 1、global_step分析      
 引用自博客[https://blog.csdn.net/leviopku/article/details/78508951]     
-global_step在滑动平均、优化器、指数衰减学习率等方面都有用到，这个变量的实际意义非常好理解：代表全局步数，比如在多少步该进行什么操作，现在神经网络训练到多少轮等等，类似于一个钟表。   
-![image](https://github.com/zhangxuying1004/Knowledge/blob/master/tensorflow/image_folder/1.PNG)
+global_step在滑动平均、优化器、指数衰减学习率等方面都有用到，这个变量的实际意义非常好理解：代表全局步数，比如在多少步该进行什么操作，现在神经网络训练到多少轮等等，类似于一个钟表。 
+```python
+import tensorflow as tf
+import numpy as np
+
+x = tf.placeholder(tf.float32, shape=[None, 1])
+y = tf.placeholder(tf.float32, shape=[None, 1])
+w = tf.Variable(tf.constant(0.0))
+
+global_step = tf.Variable(0, trainable=False)
+
+loss = (w*x-y)**2
+
+learning_rate = tf.train.exponential_decay(0.1, global_step=global_step, decay_steps=10, decay_rate=2, staircase=False)
+opt_op = tf.train.GradientDescentOptimizer(learning_rate).minimize(loss, global_step=global_step)
+
+with tf.Session() as sess:
+    sess.run(tf.global_variables_initializer())
+
+    for i in range(10):
+        sess.run(opt_op, feed_dict={
+            x: np.linspace(1, 2, 10).reshape([10, 1]),
+            y: np.linspace(1, 2, 10).reshape([10, 1])
+        })
+        print(learning_rate.eval())
+        print(global_step.eval())
+```
 输出：
 ```
 0.107177  
