@@ -179,7 +179,7 @@ writer=tf.summary.FileWriter('/path', tf.get_default_graph())
 writer.close() 
 ```
 3）运行可视化命令，启动服务  
-tensorboard –logdir path  
+tensorboard --logdir=path  
 4）打开可视化界面  
 通过浏览器打开服务器访问端口http://xxx.xxx.xxx.xxx:6006  
 （2）在本地使用服务器端的tensorboard  
@@ -187,8 +187,8 @@ tensorboard –logdir path
 如果使用的是cmd，则ssh -L 8080:127.0.0.1:8080 username@remote_server_ip；  
 如果使用的是xshell，则设置隧道，建立本地和服务器的映射。  
 在服务器端使用：  
-tensorboard –logdir=logs/ --port 8008  
-打开谷歌浏览器：输入网址127.0.0.1:8008  
+tensorboard --logdir=summary --port 8008     
+打开谷歌浏览器：输入网址127.0.0.1:8008    
 ## 9、Tensorflow不同版本引起的错误  
 （1）AttributeError: 'module' object has no attribute 'merge_all_summaries'  
 将tf.merge_all_summaries() 改为：summary_op = tf.summary.merge_all()  
