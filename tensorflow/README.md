@@ -198,9 +198,29 @@ tensorboard –logdir=logs/ --port 8008
 将tf.scalar_summary 改为：tf.summary.scalar  
 （4）AttributeError: 'module' object has no attribute 'histogram_summary'  
 将histogram_summary 改为：tf.summary.histogram  
-
-
-
-
+## 10 Tensorflow中指定GPU  
+```python
+# 在终端执行程序时指定GPU  
+CUDA_VISIBLE_DEVICES=gpu_id python file_name.py  
+# 在tmux环境中指定GPU  
+EXPORT CUDA_VISIBLE_DEVICES=gpu_id  
+# 在python代码中指定GPU  
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+```
+# 11 报错：failed to allocate xxx M (xxxxx bytes) from device：CUDA_ERROR_OUT_OF_MEMORY   
+解决方案：在启动session前,加上一些设置：  
+```python
+session_config = tf.ConfigProto()
+#允许tf动态的申请现存
+session_config.gpu_options.allow_growth = True
+#或者限制GPU使用率
+session_config.gpu_options.per_process_gpu_memory_fraction = 0.4
+#允许tf自动选择一个存在并且可用的设备来运行操作
+session_config.allow_soft_placement = True
+session_config.log_device_placement = False
+with tf.Session(config=session_config) as sess:
+    # 执行paragraph
+```
 
 
