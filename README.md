@@ -45,4 +45,72 @@ annotation{
 
 **（5）SPICE得分**   
 
+## 4、nltk的使用
+（1）使用nltk进行分词
+```python
+from nltk import word_tokenize   
+string = "All work and no play makes jack a dull boy, all work and no play"
+print(word_tokenize(string))
+运行结果：
+['All', 'work', 'and', 'no', 'play', 'makes', 'jack', 'a', 'dull', 'boy', ',', 'all', 'work', 'and', 'no', 'play']
+```
+（2）使用nltk分句  
+```python 
+from nltk.tokenize import sent_tokenize
+data = "All work and no play makes jack dull boy. All work and no play makes jack a dull boy."
+print(sent_tokenize(data))
+运行结果：
+['All work and no play makes jack dull boy.', 'All work and no play makes jack a dull boy.']
+```
+注：NLTK 同样不支持对中文的分词和分句，具体支持哪些语言的分句，可以参考文件夹nltk_data --> tokenizers --> punkt。  
+（3）使用nltk计算BLEU得分
+参考[https://coladrill.github.io/2018/10/20/%E6%B5%85%E8%B0%88BLEU%E8%AF%84%E5%88%86/]
+1）语句BLEU分数
+NLTK提供了sentence_bleu()函数，用于根据一个或多个参考语句来评估候选语句。   
+参考语句必须作为语句列表来提供，其中每个语句是一个记号列表。候选语句作为一个记号列表被提供。   
+```python
+from nltk.translate.bleu_score import sentence_bleu
+reference = [['this', 'is', 'a', 'test'], ['this', 'is' 'test']]
+candidate = ['this', 'is', 'a', 'test']
+score = sentence_bleu(reference, candidate)
+print(score)
+```
+2）语料库BLEU得分
+NLTK提供了一个称为corpus_bleu()的函数来计算多个句子（如段落或文档）的BLEU分数。  
+参考文本必须被指定为文档列表，其中每个文档是一个参考语句列表，并且每个可替换的参考语句也是记号列表，也就是说文档列表是记号列表的列表的列表。  
+候选文档必须被指定为列表，其中每个文件是一个记号列表，也就是说候选文档是记号列表的列表。
+```python
+from nltk.translate.bleu_score import corpus_bleu
+references = [[['this', 'is', 'a', 'test'], ['this', 'is' 'test']]]
+candidates = [['this', 'is', 'a', 'test']]
+score = corpus_bleu(references, candidates)
+print(score)
+```
+3）单独的N-Gram分数  
+单独的N-gram分数是对特定顺序的匹配n元组的评分，例如单个单词（称为1-gram）或单词对（称为2-gram或bigram）。  
+权重被指定为一个数组，其中每个索引对应相应次序的n元组。
+仅要计算1-gram匹配的BLEU分数，指定参数weights为（1,0,0,0）。  
+仅要计算2-gram匹配的BLEU分数，指定参数weights为（0,1,0,0）。  
+仅要计算3-gram匹配的BLEU分数，指定参数weights为（0,0,1,0）。  
+仅要计算4-gram匹配的BLEU分数，指定参数weights为（0,0,0,1）。  
+```python
+from nltk.translate.bleu_score import sentence_bleu
+reference = [['this', 'is', 'small', 'test']]
+candidate = ['this', 'is', 'a', 'test']
+score = sentence_bleu(reference, candidate, weights=(1, 0, 0, 0))
+print(score)
+```
+4）累加的N-Gram分数  
+累加分数是指对从1到n的所有单独n-gram分数的计算，通过计算加权几何平均值来对它们进行加权计算。  
+默认情况下，sentence_bleu（）和corpus_bleu（）分数计算累加的4元组BLEU分数，也称为BLEU-4分数。  
+BLEU-4对1元组，2元组，3元组和4元组分数的权重为1/4（25％）或0.25。 
+```python
+from nltk.translate.bleu_score import sentence_bleu
 
+reference = [['this', 'is', 'small', 'test']]
+candidate = ['this', 'is', 'a', 'test']
+
+score = sentence_bleu(reference, candidate, weights=(0.25, 0.25, 0.25, 0.25))
+print(score) 
+```
+（4）
