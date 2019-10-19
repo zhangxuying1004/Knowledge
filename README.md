@@ -113,4 +113,19 @@ candidate = ['this', 'is', 'a', 'test']
 score = sentence_bleu(reference, candidate, weights=(0.25, 0.25, 0.25, 0.25))
 print(score) 
 ```
-（4）
+## 5 数据集的保存和获取  
+```python
+import pandas as pd
+# 保存，image_ids，image_files和captions都是list
+saved_dataset = pd.DataFrame({
+        'image_id': image_ids,
+        'image_file': image_files,
+        'caption': captions
+})
+saved_dataset.to_csv(saved_file)
+# 读取
+saved_dataset = pd.read_csv(config.temp_annotation_file)
+captions = saved_dataset['caption'].values
+image_ids = saved_dataset['image_id'].values
+image_files = saved_dataset['image_file'].values
+```
