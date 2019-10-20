@@ -170,3 +170,38 @@ plt.scatter(x, y, c='green', alpha=0.6)     # 透明度设置为0.6（这样颜�
 plt.scatter(x1, y1, c='blue', alpha=0.6)
 plt.show()
 ```
+## 8 数据存取遇到的坑
+保存三个数据，img_files, captions和sililarity_values，其中img_files,sililarity_values为一维列表，captions是由字符串组成的二维列表   
+最初使用pandas进行存取  
+```python
+# 保存
+import pandas as pd
+saved_dataset = pd.DataFrame({
+    'image_file'=img_files, 
+    'caption'=captions, 
+    'score;=similarity_values
+})
+saved_dataset.to_csv('filename.csv')
+```
+遇到的问题是，以captions为例进行说明。  
+captions原本是一个由n个子列表构成的列表，每个子列表由多个个字符串语句构成。  
+pandas进行保存时，每一列只能存储一维信息，故pandas实际上先将每个子列表中的多个字符串语句打平成一个字符串，然后将这个二维列表转化为一个一维数组，存储到'caption'列下。这样显然损失了数据的维度信息。
+```python
+# 读取
+saved_dataset = pd.read_csv('filename.csv')
+captions = saved_dataset['caption']
+```
+此时，读取的captions的数据类型是ndarray，维度为(n,)，每个元素是由原子列表打平而成的字符串，   
+但是，如果print(captions[i])，发现打印出的内容与一个列表无异，但是print(captions[i])或者print(len(captions[i]))，会发现captions[i]实际上是一个字符串！这是一个很难发觉的BUG！    
+解决方案：  
+首先，将每张图片的caption数目截断成5个，即每个子列表中都有5个字符串语句，然后用np.savez()将数据保存成.npz文件
+```python
+# 保存
+np.savez(filename.npz, image_file=img_files, caption=captions, score=similarity_values)
+# 读取
+saved_dataset = np.load(data_file)
+img_files = saved_dataset['image_file'].tolist()
+captions = saved_dataset['caption'].tolist()
+similarity_values = saved_dataset['score'].tolist()
+```
+这样获得的是列表，而且不会损失维度信息。
