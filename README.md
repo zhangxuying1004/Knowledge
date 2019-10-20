@@ -205,3 +205,39 @@ captions = saved_dataset['caption'].tolist()
 similarity_values = saved_dataset['score'].tolist()
 ```
 这样获得的是列表，而且不会损失维度信息。
+## 9 jupyter远程连接服务器
+参考链接[https://blog.csdn.net/luo3300612/article/details/90344634]   
+（1）服务器端设置  
+ 第一步：安装jupyter notebook   
+ ```
+ pip install jupyter notebook
+ ```
+ 第二步：设置密码  
+ ```
+ 命令：python 
+ from notebook.auth import passwd
+ passwd()
+ ```
+ 输入并确认密码，赋值并保存输出的sha1:...  
+ 第三步：生成jupyter配置文件  
+ ```
+ jupyter notebook --generate-config
+ ```
+ 第四步：修改配置文件  
+ ```
+ c.NotebookApp.ip = '*'
+ c.NotebookApp.password = u'刚才保存的sha1:'
+ c.NotebookApp.port = 8000 # 随意
+ # c.NotebookApp.notebook_dir = "" # 修改jupyter启动目录，如有需要，则改成自己想要的目录，否则就不用改
+ c.NotebookApp.open_browser = False
+ ```
+（2）Windows设置   
+ 第一步：下载安装XShell  
+ 第二步：再XShell的SSH/隧道选项中添加：   
+    类型：本地（拨出）  
+    源主机：localhost  
+    帧听端口：8000（随意，只要是不被占用的本地端口）  
+    目标主机：目标主机的内网ip，可以通过在服务器输入ifconfig看到，如果这个命令没安装，则使用sudo apt-get install net-tools安装  
+    目标端口：刚刚填写的c.NotebookApp.port  
+    
+（3）在服务器上开一个后台，输入jupyter-notebook --allow-root，然后在Google浏览器上输入localhost：之前输入的侦听端口即可。  
