@@ -262,4 +262,8 @@ with codecs.open(file, ‘r’, encode_type)
 ## 13 字符串转化成常量
 今天，在处理SALICON数据集时，我发现导出fixation是'list'的形式，一时不知道该怎么处理。   
 查阅资料了解到，使用eval()函数，即fixation=eval(fixation)即可得到list类型的数据。   
-
+## 14 随机数的生成
+```python
+import random
+t = random.randint(a, b)  # 生成a~b之间的随机整数
+```
