@@ -1,7 +1,9 @@
 # Knowledge
-## 1、卷积神经网络的可视化  
+## 1 卷积神经网络的可视化  
 [https://cbovar.github.io/ConvNetDraw/]  
-## 2、image caption使用的COCO数据集中的标注
+## 2 使用卷积神经网络时的基本单元  
+Conv2d + BatchNormalization + ReLU + Pool
+## 3 image caption使用的COCO数据集中的标注
 **（1）两个文件**  
 训练集对应的标注：captions_train201x.json   
 测试集对应的标注：captions_val201x.json  
@@ -33,7 +35,7 @@ annotation{
 }
 ```
 注：在COCO数据集中，每个图片至少有5个描述语句（部分图片可能更多）。     
-## 3、image caption中常用的评价指标介绍  
+## 4 image caption中常用的评价指标介绍  
 **（1）BLEU得分**    
 通常需要计算BLEU-1，BLEU-2，BLEU-3，BLEU-4，后面的数字k表示k元组。  
 
@@ -45,7 +47,7 @@ annotation{
 
 **（5）SPICE得分**   
 
-## 4、nltk的使用
+## 5 nltk的使用
 （1）使用nltk进行分词
 ```python
 from nltk import word_tokenize   
@@ -113,23 +115,38 @@ candidate = ['this', 'is', 'a', 'test']
 score = sentence_bleu(reference, candidate, weights=(0.25, 0.25, 0.25, 0.25))
 print(score) 
 ```
-## 5 数据集的保存和获取  
+## 6 数据集的保存和获取  
+（1）pandas方式  
 ```python
 import pandas as pd
-# 保存，image_ids，image_files和captions都是list
+# 保存
 saved_dataset = pd.DataFrame({
         'image_id': image_ids,
         'image_file': image_files,
         'caption': captions
 })
-saved_dataset.to_csv(saved_file)
+saved_dataset.to_csv(saved_file.csv)
 # 读取
-saved_dataset = pd.read_csv(config.temp_annotation_file)
+saved_dataset = pd.read_csv(saved_file.csv)
 captions = saved_dataset['caption'].values
 image_ids = saved_dataset['image_id'].values
 image_files = saved_dataset['image_file'].values
+
+# 注：使用pandas保存时，会把各个数据转化为ndarray类型，image_ids，image_files和captions都是一维数据(如一维list)，
+# 若要保存多维数据，会损失空间信息，并且很难恢复。
 ```
-## 6 jupyter notebook常用的快捷键
+（2）savez方式  
+```python
+# 保存
+np.savez(data_file.npz, image_file=img_files, caption=captions, score=similarity_values)
+# 读取
+saved_dataset = np.load(data_file.npz)
+img_files = saved_dataset['image_file'].tolist()
+captions = saved_dataset['caption'].tolist()
+similarity_values = saved_dataset['score'].tolist()
+# 注：使用savez保存时，处理的各个部分是数组，所以image_ids，image_files和captions都是一维还是二维均可。
+```
+## 7 jupyter notebook常用的快捷键
 在编辑模式下：  
 Tab：代码补全或缩进  
 Ctrl+Enter：执行当前的单元格   
@@ -141,7 +158,7 @@ Ctrl-End : 跳到单元末尾
 Ctrl-Down : 跳到单元末尾  
 Ctrl-Left : 跳到左边一个字首  
 Ctrl-Right : 跳到右边一个字首  
-## 7 matplotlib.pylot  
+## 8 matplotlib.pylot  
 （1）显示图片和文本  
 ```python 
 import matplotlib.pylot as plt
@@ -170,7 +187,7 @@ plt.scatter(x, y, c='green', alpha=0.6)     # 透明度设置为0.6（这样颜�
 plt.scatter(x1, y1, c='blue', alpha=0.6)
 plt.show()
 ```
-## 8 数据存取遇到的坑
+## 9 数据存取遇到的坑
 保存三个数据，img_files, captions和sililarity_values，其中img_files,sililarity_values为一维列表，captions是由字符串组成的二维列表   
 最初使用pandas进行存取  
 ```python
@@ -205,7 +222,7 @@ captions = saved_dataset['caption'].tolist()
 similarity_values = saved_dataset['score'].tolist()
 ```
 这样获得的是列表，而且不会损失维度信息。
-## 9 jupyter远程连接服务器
+## 10 jupyter远程连接服务器
 参考链接[https://blog.csdn.net/luo3300612/article/details/90344634]   
 （1）服务器端设置  
  第一步：安装jupyter notebook   
