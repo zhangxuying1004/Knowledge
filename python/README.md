@@ -228,10 +228,10 @@ do something
 ```python
 import codecs
 # 用codecs提供的open方法来指定打开的文件的语言编码，它会在读取的时候自动转换为内部unicode
-with codecs.open(file, ‘r’, encode_type)
+with codecs.open(file, 'r', encode_type)
 ```
-## 12、python函数参数前面单星号与双星号的区别
-（1）单星号（*）：*args，有两个用法
+## 12、星号的使用
+（1）单星号（*）：*args，有两个用法。  
 用法一：将参数以元组的形式导入。例如：   
 ```python
 >>>def foo(param1, *param2):
@@ -241,7 +241,7 @@ with codecs.open(file, ‘r’, encode_type)
 1
 (2, 3, 4, 5)
 ```
-用法二：解压参数列表。例如：   
+用法二：元组/列表前加星号，解压参数列表。例如：   
 ```python
 >>>def foo(bar, lee):
 	print(bar, lee)
@@ -252,12 +252,12 @@ with codecs.open(file, ‘r’, encode_type)
 （2）双星号（**）：**args
 将参数以字典的形式导入。例如：   
 ```python
->>>def foo(param1, *param2):
+>>>def foo(param1, **param2):
 	print(param1)
-	print(param1)
->>>foo(1, 2, 3, 4, 5)
+	print(param2)
+>>>foo(1, a=2, b=3)
 1
-{‘a’: 2, ‘b’: 3}
+{'a': 2, 'b': 3}
 ```
 ## 13 字符串转化成常量
 今天，在处理SALICON数据集时，我发现导出fixation是'list'的形式，一时不知道该怎么处理。   
@@ -266,4 +266,5 @@ with codecs.open(file, ‘r’, encode_type)
 ```python
 import random
 t = random.randint(a, b)  # 生成a~b之间的随机整数
+t = random.sample(range(start, end), k)	# 生成start~end之间不重复的k个随机数
 ```
