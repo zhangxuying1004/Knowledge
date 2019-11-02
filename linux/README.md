@@ -1,4 +1,128 @@
-## 1 Ubuntu压缩/解压
+## 1 添加删除用户 
+```
+（1）添加用户  
+sudo adduser 用户名  
+（2）删除用户  
+sudo userdel -r 用户名  
+```
+## 2 查看CUDA、CUDNN版本号 
+```
+（1）查看CUDA版本  
+cat /usr/local/cuda/version.txt  
+（2）查看CUDNN版本  
+cat /usr/local/cuda/include/cudnn.h | grep CUDNN_MAJOR -A 2  
+```
+## 3 查看显卡信息  
+```
+nvidia-smi  
+```
+## 4 刷新命令  
+```
+source ~/.bashrc  
+```
+## 5 xxx is not in the sudoers file.This incident will be reported.的解决方法 
+```
+1）切换到一个已在sudoers的用户下  
+2）输入命令：sudo vim /etc/sudoers，填写此用户的密码  
+找到这行 root ALL=(ALL) ALL,在他下面添加xxx ALL=(ALL) ALL  
+```
+## 6 tmux常用命令  
+```
+1）启动一个新会话：tmux [new -s 会话名 -n 窗口名]  
+2）列出存在的所有会话：tmux ls  
+3）恢复会话：tmux at [-t 会话名]  
+4）关闭会话：tmux kill-session -t 会话名 
+```
+## 7 VIM配置
+```
+syntax on                                                                                                           
+set number                                                             
+set cursorline                                                                          
+                                                                                                                       
+set tabstop=4                                                                                                   
+set softtabstop=4                                                                          
+set shiftwidth=4                                                                                                      
+                                                                                                                       
+set autoindent                                                                                                       
+                                                                                                                      
+filetype on                                                                                                    
+filetype plugin on  
+filetype indent on                                                                                         
+set completeopt=longest,menu                                                                      
+                                                                                                            
+set encoding=utf-8                                                                                             
+set termencoding=utf-8                                                 
+set clipboard+=unnamed
+```
+## 8 VIM常用操作
+```
+（1）跳转到最后一行：shift+g
+（2）跳转到当前行的第一个字符：在当前行按“0”
+（3）文件重新载入：e!
+（4）单行复制：将光标移到复制行 按 'yy'进行复制
+（5）多行复制：将光标移到复制首行 按 'nyy'进行复制 n=1.2.3.4…
+（6）单行剪切：将光标移到复制行 按 'dd'进行复制
+（7）多行剪切：将光标移到复制首行 按 'ndd'进行复制 n=1.2.3.4…
+（8）粘贴：将光标移到粘贴行 按 'p'进行粘贴
+（0）查找：/pattern Enter
+```
+## 9 文件夹操作
+```
+（1）文件夹复制
+cp -r source target
+（2）文件夹移动
+mv source target
+（3）文件夹删除
+rm -rf source target
+```
+## 10 管道符“|”的作用
+```
+命令格式：命令A|命令B，即命令A的正确输出作为命令B的操作对象。
+例如：ps aux | grep "test"  在 ps aux中的結果中查找test。
+```
+## 11 命令之间的分号，&&， ||
+```
+在用linux命令时候，我们经常需要同时执行多条命令，那么命令之间该如何分割呢？
+分号：顺序地独立执行各条命令， 彼此之间不关心是否失败，所有命令都会执行。
+&&：顺序执行各条命令， 只有当前一个执行成功时候，才执行后面的。
+||：顺序执行各条命令， 只有当前面一个执行失败的时候，才执行后面的。
+```
+## 12 安装Java运行环境
+```
+sudo apt-get install default-jre
+sudo apt-get install default-jdk
+```
+## 13 统计当前目录下的文件个数、目录个数
+```
+（1）查看当前目录下的文件数量（不包含子目录中的文件）
+ls -l|grep "^-"| wc -l
+（2）查看当前目录下的文件数量（包含子目录中的文件） 注意：R，代表子目录
+ls -lR|grep "^-"| wc -l
+（3）查看当前目录下的文件夹目录个数（不包含子目录中的目录），同上述理，如果需要查看子目录的，加上R
+ls -l|grep "^d"| wc -l
+```
+## 14 查看内存信息
+```
+（1）free -m
+（2）sudo fdisk -l
+（3）df -h
+```
+## 15 挂载与取消挂载
+```
+mount [参数] [设备名称] [挂载点]
+umount [参数] [挂载点]
+```
+## 16 opencv安装
+```
+CUDA version: 9.0.176，CUDNN version: 7.4.2，pyhton==3.6.9环境下，opencv的安装：
+pip install opencv-python==3.3.0.10
+pip install opencv-contrib-python==3.3.0.10
+```
+## 17 查看指定进程的信息  
+```
+ps -aux | grep 进程号  
+```
+## 18 Ubuntu压缩/解压
 ```
 .tar
 解包：tar xvf FileName.tar
