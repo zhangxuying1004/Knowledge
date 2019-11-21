@@ -268,3 +268,13 @@ import random
 t = random.randint(a, b)  # 生成a~b之间的随机整数
 t = random.sample(range(start, end), k)	# 生成start~end之间不重复的k个随机数
 ```
+## 15 自定义包的引入
+python默认在（当前.py文件所在的目录下）和（anaconda3/lib/下的几个文件夹下）搜索要引入的包，可以通过  
+```python
+import sys
+print(sys.path)
+```
+来查看。  
+如果要引入新的自定义的包，可以通过代码sys.path.append(path)将自定义包所在的路径加入到sys.path中，这样便能直接import了。   
+
+
