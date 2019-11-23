@@ -1,5 +1,5 @@
 # python knowledge
-## 1、常用函数 
+## 1 常用函数 
 ```
 1.1 input函数   
 <变量> = input(<提示性文字>)
@@ -26,7 +26,7 @@ num -- 分割次数。默认为 -1, 即分隔所有。
 1.10 vars([object])
 返回对象object的属性和属性值的字典对象
 ```
-## 2、numpy模块   
+## 2 numpy模块   
 ```
 import numpy as np
 2.1 np.arange(n)
@@ -47,7 +47,7 @@ import numpy as np
 2.8 np.split(array, indices_or_sections, axis)
 沿指定轴将数组分割为子数组，等分或者在指定位置处分割。
 ```
-## 3、文件路径操作
+## 3 文件路径操作
 ```python
 # glob模块 
 from glob import glob
@@ -111,96 +111,7 @@ basename_prefix_paths:
 8
 9
 ```
-## 4、.txt文件存取   
-```
-4.1 将数据存储到txt文件中
-with open(filename.txt, 'w') as f:
-    print(data, file=f)
-4.2 读取文件
-（1）方式1：
-data = np.loadtxt(filename.txt)
-（2）方式2：
-with open('odom.txt', 'r') as f:
-    lines = f.readlines()  # txt中所有字符串读入data
-    for line in lines:
-        temp = line.split()  # 将单个数据分隔开存好
-        data = list(map(float, temp))  # 转化为浮点数
-```
-## 5、.npz文件  
-```
-5.1 npz对象
-常用属性
-1）files
-列出对.npz文件中，对各类数据的索引。
-2）f
-可以作为一种可选的方式执行Npzfile实例的索引。对象.f.索引<==>对象[‘索引’]
-5.2 存储方式
-Np.savez(filename, attr_name=data)    # eg: attr_name is points
-5.3 读取方式
-tmp = np.load(filename)
-data = tmp[‘points’]
-```
-## 6、heapq模块(最大堆)   
-```python
-import heapq
-data = []
-# 将item推入到data里
-heapq.heappush(data, item)
-# 将最小元素从data中取出
-heapq.heappop(data)
-# 将item插入到data中,同时弹出data中的最小值，即取出n+1个元素中最小的那个元素
-heapq.heappushpop(data, item)
-```
-## 7、字符串类型的格式化   
-```
-<模板字符串>.format(<逗号分隔的参数>)   
-其中，模板字符串由一系列槽组成，用来控制修改字符串中嵌入值出现的位置。   
-槽用大括号{}表示，槽的内部样式是{<参数序号>: <格式控制标记>}。格式控制标记包括填充、对齐、，、精度和类型6个字段，
-用来控制参数显示时的格式。   
-其中，精度表示两个含义，由小数点开头，对于浮点数，精度表示小数部分输出的有效位数，对于字符串，精度表示输出的最大长度。
-类型表示输出整数和浮点数类型的格式规则，对于整数类型，o输出整数的八进制方式，x输出整数的小写十六进制方式，X输出整数的
-大写十六进制方式；对于 浮点数，e/E输出科学计数法的形式，f输出浮点数的标准浮点形式，%输出浮点数的百分形式。
-```
-## 8、lambda函数（匿名函数）
-```
-<函数名> = lambda<参数列表> : <表达式>
-Lambda函数与正常的函数一样，等价于下面形式：   
-def <函数名>(<参数列表>):
-	return <表达式>
-如下例所示：   
->>> f = lambda x, y : x + y
->>> type(f)
-<class ‘function’>
->>> f(10, 12)
-22
-```
-## 9、文件的写入和读取   
-9.1 JSON方式
-```python
-import json
-（1）文件写入
-json.dumps: 将 Python 对象编码成 JSON 字符串   
-```python
-hp = hp = json.dumps(vars(hparams))
-with open(filename, 'w') as fout:
-        fout.write(hp)
-（2）文件的读取   
-json.loads: 将已编码的 JSON 字符串解码为 Python 对象。   
-d = open(os.path.join(path, "hparams"), 'r').read()
-flag2val = json.loads(d)
-for f, v in flag2val.items():
-      parser.f = v
-      
-注：如果你要处理的不是字符串而是文件，则使用的是json.load()解码JSON数据。
-# 写入 JSON 数据
-with open('data.json', 'w') as f:
-    json.dump(data, f)
- 
-# 读取数据
-with open('data.json', 'r') as f:
-    data = json.load(f)
-```
-# 10、with语句
+# 4 with语句
 with语句适用于对资源进行访问的场合，确保不管使用过程中是否发生异常都会执行必要的“清理”操作，释放资源。比如文件使用后自动关闭，
 线程中锁的自动获取和释放等。   
 下面以文件操作为例进行说明：      
@@ -223,16 +134,90 @@ with open('xxx') as file:
     data = file.read()
 do something
 ```
-显然with语句能够减少冗长，还可以自动处理上下文环境产生的异常。   
-## 11、codecs：自然语言编码转换
-```python
-import codecs
-# 用codecs提供的open方法来指定打开的文件的语言编码，它会在读取的时候自动转换为内部unicode
-with codecs.open(file, 'r', encode_type)
+显然with语句能够减少冗长，还可以自动处理上下文环境产生的异常。 
+## 5 数据的存取
+5.1 .txt文件    
 ```
-## 12、星号的使用
-（1）单星号（*）：*args，有两个用法。  
-用法一：将参数以元组的形式导入。例如：   
+（1）存储  
+ with open(filename.txt, 'w') as f:
+    print(data, file=f)
+ (2) 读取  
+1）方式1：
+data = np.loadtxt(filename.txt)
+2）方式2：
+with open('odom.txt', 'r') as f:
+    lines = f.readlines()  # txt中所有字符串读入data
+    for line in lines:
+        temp = line.split()  # 将单个数据分隔开存好
+        data = list(map(float, temp))  # 转化为浮点数 
+```
+5.2 .npz文件  
+```
+（1）常用属性
+1）files
+列出对.npz文件中，对各类数据的索引。
+2）f
+可以作为一种可选的方式执行Npzfile实例的索引。对象.f.索引<==>对象[‘索引’]
+（2）存储
+np.savez(filename, attr_name1=data1， attr_name2=data2...) 
+（3）读取
+data = np.load(filename)
+data1 = data['attr_name1']
+data2 = data['attr_name2']
+```
+5.3 .json文件  
+```
+# json的引入
+import json
+（1）存储
+with oepn('filename.json', 'w'):
+    json.dump(data, f)
+（2）读取
+with open('filename.json', 'r'):
+    data = json.load(f)
+```
+注：json文件只能存取字典，列表等序列化数据，但是不能存取矩阵类型的数据。
+
+## 6 字符串类型的格式化   
+```
+<模板字符串>.format(<逗号分隔的参数>)   
+其中，模板字符串由一系列槽组成，用来控制修改字符串中嵌入值出现的位置。   
+槽用大括号{}表示，槽的内部样式是{<参数序号>: <格式控制标记>}。格式控制标记包括填充、对齐、，、精度和类型6个字段，
+用来控制参数显示时的格式。   
+其中，精度表示两个含义，由小数点开头，对于浮点数，精度表示小数部分输出的有效位数，对于字符串，精度表示输出的最大长度。
+类型表示输出整数和浮点数类型的格式规则，对于整数类型，o输出整数的八进制方式，x输出整数的小写十六进制方式，X输出整数的
+大写十六进制方式；对于 浮点数，e/E输出科学计数法的形式，f输出浮点数的标准浮点形式，%输出浮点数的百分形式。
+```
+## 7 lambda函数（匿名函数）
+```
+<函数名> = lambda<参数列表> : <表达式>
+Lambda函数与正常的函数一样，等价于下面形式：   
+def <函数名>(<参数列表>):
+	return <表达式>
+如下例所示：   
+>>> f = lambda x, y : x + y
+>>> type(f)
+<class ‘function’>
+>>> f(10, 12)
+22
+```
+## 8 随机数的生成
+```python
+import random
+t = random.randint(a, b)  # 生成a~b之间的随机整数
+t = random.sample(range(start, end), k)	# 生成start~end之间不重复的k个随机数
+```
+## 9 自定义包的引入
+python默认在（当前.py文件所在的目录下）和（anaconda3/lib/下的几个文件夹下）搜索要引入的包，可以通过  
+```python
+import sys
+print(sys.path)
+```
+来查看。  
+如果要引入新的自定义的包，可以通过代码sys.path.append(path)将自定义包所在的路径加入到sys.path中，这样便能直接import了。 
+## 10 星号的使用
+10.1 单星号（*）：*args，有两个用法。  
+（1）用法一：将参数以元组的形式导入。例如：   
 ```python
 >>>def foo(param1, *param2):
 	print(param1)
@@ -241,7 +226,7 @@ with codecs.open(file, 'r', encode_type)
 1
 (2, 3, 4, 5)
 ```
-用法二：元组/列表前加星号，解压参数列表。例如：   
+（2） 用法二：元组/列表前加星号，解压参数列表。例如：   
 ```python
 >>>def foo(bar, lee):
 	print(bar, lee)
@@ -249,7 +234,7 @@ with codecs.open(file, 'r', encode_type)
 >>>foo(*l)
 1 2
 ```
-（2）双星号（**）：**args
+10.2 双星号（**）：**args   
 将参数以字典的形式导入。例如：   
 ```python
 >>>def foo(param1, **param2):
@@ -259,22 +244,25 @@ with codecs.open(file, 'r', encode_type)
 1
 {'a': 2, 'b': 3}
 ```
-## 13 字符串转化成常量
+## 11 heapq模块(最大堆)   
+```python
+import heapq
+data = []
+# 将item推入到data里
+heapq.heappush(data, item)
+# 将最小元素从data中取出
+heapq.heappop(data)
+# 将item插入到data中,同时弹出data中的最小值，即取出n+1个元素中最小的那个元素
+heapq.heappushpop(data, item)
+```  
+## 12 字符串转化成常量
 今天，在处理SALICON数据集时，我发现导出fixation是'list'的形式，一时不知道该怎么处理。   
 查阅资料了解到，使用eval()函数，即fixation=eval(fixation)即可得到list类型的数据。   
-## 14 随机数的生成
+  
+## 13 codecs：自然语言编码转换
 ```python
-import random
-t = random.randint(a, b)  # 生成a~b之间的随机整数
-t = random.sample(range(start, end), k)	# 生成start~end之间不重复的k个随机数
+import codecs
+# 用codecs提供的open方法来指定打开的文件的语言编码，它会在读取的时候自动转换为内部unicode
+with codecs.open(file, 'r', encode_type)
 ```
-## 15 自定义包的引入
-python默认在（当前.py文件所在的目录下）和（anaconda3/lib/下的几个文件夹下）搜索要引入的包，可以通过  
-```python
-import sys
-print(sys.path)
-```
-来查看。  
-如果要引入新的自定义的包，可以通过代码sys.path.append(path)将自定义包所在的路径加入到sys.path中，这样便能直接import了。   
-
 
