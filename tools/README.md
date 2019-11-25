@@ -43,4 +43,18 @@ count=1
 2.2 主题插件  
 Ctrl+Shift+X，在搜索框输入Theme，选择安装自己喜欢的插件。  
 本人选择的插件为Cobalt2 Theme Official和vscode-icons。  
-注：点击install安装后，还需要点击旁边的reload resquire，自动重启，点击右下方弹出框中的activate，主题才能正式生效。   
+注：点击install安装后，还需要点击旁边的reload resquire，自动重启，点击右下方弹出框中的activate，主题才能正式生效。  
+2.3 消除vscode编译器中代码的一些奇怪的报错和警告  
+在setting.json文件中，添加  
+```python
+"python.linting.pylintArgs": [
+        "--generated-members",
+        "--disable=E1001",
+        "--disable=W,C",
+        "--errors-only"
+]
+```
+
+
+
+
