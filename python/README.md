@@ -277,3 +277,17 @@ r是防止字符转义的 如果路径中出现'\t'的话 不加r的话\t就会�
 >>> print(s1)  
        t  
 ```
+## 15 字典数据排序  
+```python
+d = {'lilee':25, 'wangyan':21, 'liqun':32, 'lidaming':19}
+print(d)
+# 按键排序
+d1 = dict(sorted(d.items(), key=lambda item: item[0]))
+print(d1)
+# 按值排序
+d2 = dict(sorted(d.items(), key=lambda item: item[1]))
+print(d2)
+```
+
+
+
