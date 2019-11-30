@@ -51,7 +51,9 @@ Ctrl+Shift+X，在搜索框输入Theme，选择安装自己喜欢的插件。
         "--generated-members",
         "--disable=E1001",
         "--disable=W,C",
-        "--errors-only"
+        "--errors-only",
+        
+        "--extension-pkg-whitelist"
 ]
 ```
 
