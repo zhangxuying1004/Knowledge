@@ -122,7 +122,11 @@ pip install opencv-contrib-python==3.3.0.10
 ```
 ps -aux | grep 进程号  
 ```
-## 18 Ubuntu压缩/解压
+## 18 两台ubuntu电脑之间传输文件  
+```
+scp -r /home/wangpf/Report2 mingzi@111.111.111.111:/home/wenjianjia
+```
+## 19 Ubuntu压缩/解压
 ```
 .tar
 解包：tar xvf FileName.tar
