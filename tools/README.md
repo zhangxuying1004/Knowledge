@@ -48,15 +48,19 @@ Ctrl+Shift+X，在搜索框输入Theme，选择安装自己喜欢的插件。
 在setting.json文件中，添加  
 ```python
 "python.linting.pylintArgs": [
-        "--generated-members",
-        "--disable=E1001",
-        "--disable=W,C",
-        "--errors-only",
-        
-        "--extension-pkg-whitelist"
+     "--disable=E1001",
+     "--disable=W,C",
+     "--generated-members"
+],
+"python.linting.flake8Args": [
+     "--max-line-length=1000",
+     "--ignore=E402,E117"
+],
+"python.linting.pydocstyleArgs": [
+     "--ignore=D400", 
+     "--ignore=D4"
 ]
 ```
-
 
 
 
