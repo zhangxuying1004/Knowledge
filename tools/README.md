@@ -54,7 +54,7 @@ Ctrl+Shift+X，在搜索框输入Theme，选择安装自己喜欢的插件。
 ],
 "python.linting.flake8Args": [
      "--max-line-length=1000",
-     "--ignore=E402,E117"
+     "--ignore=E402,E117,E226,F401,W293"
 ],
 "python.linting.pydocstyleArgs": [
      "--ignore=D400", 
