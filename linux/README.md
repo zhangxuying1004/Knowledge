@@ -126,7 +126,16 @@ ps -aux | grep 进程号
 ```
 scp -r /home/wangpf/Report2 mingzi@111.111.111.111:/home/wenjianjia
 ```
-## 19 Ubuntu压缩/解压
+## 19 将pip默认下载源设置为清华镜像  
+```
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pip -U
+pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+```
+## 20 pip安装出现Script file 'D:\Anaconda3\Scripts\pip-script.py' is not present.  
+```
+easy_install pip
+```
+## 21 Ubuntu压缩/解压  
 ```
 .tar
 解包：tar xvf FileName.tar
