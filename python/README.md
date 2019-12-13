@@ -288,6 +288,34 @@ print(d1)
 d2 = dict(sorted(d.items(), key=lambda item: item[1]))
 print(d2)
 ```
+## 16 matplotlib.pylot  
+（1）显示图片和文本  
+```python 
+import matplotlib.pylot as plt
+from PIL import Image  
+image = Image.open('file_path')
+captions = ['caption1', 'caption2', 'caption3', 'caption4', 'caption5']
+plt.imshow(image)
+# 先设置显示坐标轴，大致确定显示文本的位置，然后再关闭坐标轴
+plt.axis('off')    # plt.axis('on')
+for i in range(len(captions)):
+    plt.text(x_init, y_init + i*space, captions[i])
+plt.show()
+```
+(2) 绘制散点图  
+```python 
+import matplotlib.pylot as plt
+import numpy as np
+N  = 100
+x = np.random.rand(N)
+y = np.random.rand(N)
 
+x1 = np.random.rand(N)
+y1 = np.random.rand(N)
+
+plt.scatter(x, y, c='green', alpha=0.6)     # 透明度设置为0.6（这样颜色浅一点，比较好看）
+plt.scatter(x1, y1, c='blue', alpha=0.6)
+plt.show()
+```
 
 
