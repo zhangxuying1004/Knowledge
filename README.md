@@ -146,48 +146,7 @@ captions = saved_dataset['caption'].tolist()
 similarity_values = saved_dataset['score'].tolist()
 # 注：使用savez保存时，处理的各个部分是数组，所以image_ids，image_files和captions都是一维还是二维均可。
 ```
-## 7 jupyter notebook常用的快捷键
-在编辑模式下：  
-Tab：代码补全或缩进  
-Ctrl+Enter：执行当前的单元格   
-Shift+Enter：执行当前的单元格并进入下一个单元格 
-Alt-Enter : 运行本单元，在下面插入一单元  
-Ctrl-Home : 跳到单元开头  
-Ctrl-Up : 跳到单元开头  
-Ctrl-End : 跳到单元末尾  
-Ctrl-Down : 跳到单元末尾  
-Ctrl-Left : 跳到左边一个字首  
-Ctrl-Right : 跳到右边一个字首  
-## 8 matplotlib.pylot  
-（1）显示图片和文本  
-```python 
-import matplotlib.pylot as plt
-from PIL import Image  
-image = Image.open('file_path')
-captions = ['caption1', 'caption2', 'caption3', 'caption4', 'caption5']
-plt.imshow(image)
-# 先设置显示坐标轴，大致确定显示文本的位置，然后再关闭坐标轴
-plt.axis('off')    # plt.axis('on')
-for i in range(len(captions)):
-    plt.text(x_init, y_init + i*space, captions[i])
-plt.show()
-```
-(2) 绘制散点图  
-```python 
-import matplotlib.pylot as plt
-import numpy as np
-N  = 100
-x = np.random.rand(N)
-y = np.random.rand(N)
-
-x1 = np.random.rand(N)
-y1 = np.random.rand(N)
-
-plt.scatter(x, y, c='green', alpha=0.6)     # 透明度设置为0.6（这样颜色浅一点，比较好看）
-plt.scatter(x1, y1, c='blue', alpha=0.6)
-plt.show()
-```
-## 9 数据存取遇到的坑
+## 7 数据存取遇到的坑
 保存三个数据，img_files, captions和sililarity_values，其中img_files,sililarity_values为一维列表，captions是由字符串组成的二维列表   
 最初使用pandas进行存取  
 ```python
@@ -222,39 +181,4 @@ captions = saved_dataset['caption'].tolist()
 similarity_values = saved_dataset['score'].tolist()
 ```
 这样获得的是列表，而且不会损失维度信息。
-## 10 jupyter远程连接服务器
-参考链接[https://blog.csdn.net/luo3300612/article/details/90344634]   
-（1）服务器端设置  
- 第一步：安装jupyter notebook   
- ```
- pip install jupyter notebook
- ```
- 第二步：设置密码  
- ```
- 命令：python 
- from notebook.auth import passwd
- passwd()
- ```
- 输入并确认密码，赋值并保存输出的sha1:...  
- 第三步：生成jupyter配置文件  
- ```
- jupyter notebook --generate-config
- ```
- 第四步：修改配置文件  
- ```
- c.NotebookApp.ip = '*'
- c.NotebookApp.password = u'刚才保存的sha1:'
- c.NotebookApp.port = 8000 # 随意
- # c.NotebookApp.notebook_dir = "" # 修改jupyter启动目录，如有需要，则改成自己想要的目录，否则就不用改
- c.NotebookApp.open_browser = False
- ```
-（2）Windows设置   
- 第一步：下载安装XShell  
- 第二步：再XShell的SSH/隧道选项中添加：   
-    类型：本地（拨出）  
-    源主机：localhost  
-    帧听端口：8000（随意，只要是不被占用的本地端口）  
-    目标主机：目标主机的内网ip，可以通过在服务器输入ifconfig看到，如果这个命令没安装，则使用sudo apt-get install net-tools安装  
-    目标端口：刚刚填写的c.NotebookApp.port  
-    
-（3）在服务器上开一个后台，输入jupyter-notebook --allow-root，然后在Google浏览器上输入localhost：之前输入的侦听端口即可。  
+
