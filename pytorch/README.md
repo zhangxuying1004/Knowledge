@@ -1,6 +1,55 @@
 # pytorch knowledge
-## 1 使用tensorboardX可视化   
-[https://www.jianshu.com/p/46eb3004beca]
+## 1 可视化
+（1）使用tensorboardX可视化   
+参考：[https://www.jianshu.com/p/46eb3004beca]  
+安装：pip install tensorboardX  
+代码：  
+```python
+from tensorboardX import SummaryWriter
+writer = SummaryWriter(log_path)
+writer.add_scalar('data/scalar1', data[0], step)
+writer.add_scalars(
+    'data/scalar_group', 
+    {
+        'xsinx': n_iter * np.sin(n_iter),
+        'xcosx': n_iter * np.cos(n_iter),
+        'arctanx': np.arctan(n_iter)
+    },
+    n_iter
+)
+writer.add_image('image/image1', x, n_iter)
+writer.add_images('image/image_group', batch_x, n_iter)
+writer.add_text('Text', 'text logged at step:' + str(n_iter), n_iter)
+
+for name, param in resnet18.named_parameters():
+    writer.add_histogram(name, param.clone().cpu().data.numpy(), n_iter)
+
+writer.close()
+```
+监听：在命令行，输入 tensorboard --logdir log_path --port xxx  
+（2）使用visdom可视化
+安装：pip install visdom  
+代码：  
+```python
+from visdom import Visdom
+viz = Visdom()
+# 画一条曲线
+# 初始化线，第一个值为Y，第二个值为X，现在初始化为0，win作为这条线的唯一标识符，也可以设置envs来管理win，opts是额外的配置信息
+viz.line([0.], [0.], win='train_loss', opts=dict(title='train_loss'))
+# 更新曲线
+viz.line([loss.item()], [global_step], win='train_loss', update='append')
+
+# 画多条曲线，初始化和更新时，设置多个Y的信息，还要注意配置信息，设置lengend做区分
+viz.line([[0., 0.0]], [0.], win='test', opts=dict(title='test loss&acc.', legend=['loss', 'acc.']))
+viz.line([[loss.item(), correct / len(test_loader.dataset)]], [global_step], win='test', update='append')
+
+# 显示图片
+viz.images(data.view(-1, 1, 28, 28), win='x')
+# 显示文本
+viz.text(str(pred.detach().cpu().numpy()), win='pred', opts=dict(title='pred'))
+```
+监听：在命令行，输入 python -m visdom.server  
+注：可视化图片是，tensorboardX需要接收numpy()类型的数据，visdom可以直接接收tensor类型的数据。
 ## 2 F.cross_entropy(input, target)  
 其中，input为模型输出的logits，即模型的最后一层没有加softmax激活函数；  
 target为ground-truth labels，不需要转化为one-hot的形式。  
