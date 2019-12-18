@@ -157,5 +157,13 @@ iv 关闭Tab：Ctrl+w
 v 切换Tab：Ctrl+Tab或Ctrl+1,2...  
 vi 新建Cmd：Shift+Alt+1  
 vii 新建Powershell：Shift+Alt+2  
+viii 快速切换到第n个页签：Ctrl+n  
+4.7 隐藏标题栏和标签栏  
+标题栏是界面的上栏，标签栏是界面的下栏。  
+隐藏标题栏：settings-->General-->Appearance-->Title bar and border options-->hide caption always  
+隐藏标签栏：settings-->General-->Tab bar-->Auto show|Don't show  
+
+
+
 
 
