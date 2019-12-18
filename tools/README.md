@@ -110,5 +110,52 @@ Ctrl-End : 跳到单元末尾
 Ctrl-Down : 跳到单元末尾  
 Ctrl-Left : 跳到左边一个字首  
 Ctrl-Right : 跳到右边一个字首  
+## 4 Cmder
+4.1 下载  
+下载地址：https://cmder.net/  
+下载完成后，把压缩包解压到某一目录下。  
+4.2 配置环境变量  
+此电脑-->属性-->高级系统设置-->环境变量  
+（1）配置用户变量  
+用户名：CMDER_ROOT，变量值："存放目录\cmder"  
+用户名：ConEmuDir，变量值：%CMDER_ROOT%\vendor\conemu-maximus5  
+（2）配置系统变量  
+双击系统变量中的Path，进入编辑环境变量界面，点击新建，输入%CMDER_ROOT%  
+以管理员权限打开cmd或者powershell，进入目录 存放目录/cmder，输入Cmder.exe /REGISTER ALL  
+右击鼠标，可以看到Cmder的标识。  
+4.3 解决中文乱码的问题  
+打开Cmder，settings-->startup-->Environment  
+把下面的代码粘贴到编辑框：  
+```
+set PATH=%ConEmuBaseDir%\Scripts;%PATH%
+set LANG=zh_CN.UTF-8
+set LC_ALL=zh_CN.utf8
+chcp utf-8
+```
+4.4 字体高亮配置  
+（1）下载并安装字体  
+下载地址：https://github.com/tonsky/FiraCode  
+点击Download v.2，即可完成下载  
+解压压缩包，双击FiraCode.ttf文件，选择"安装"，即可完成安装。  
+（2）打开Cmder，settings-->General->Fonts  
+将Main console font和Alternative font都设置成Fira Code，在Unicode ranges后追加E0A0; E0B0;。   
+（3）安装高亮插件  
+下载地址：https://github.com/AmrEldib/cmder-powerline-prompt  
+将下载文件夹中的所有 .lua 文件，放置在"存放目录\Cmder\config"目录中，然后重启 Cmder。
+4.5 修改命令提示符  
+Cmder默认的命令提示符是λ，而常用的命令提示符是$，身为强迫症患者，自然要修改啦。  
+需要修改以下三个文件：  
+"存放目录Cmder\vendor\clink.lua"：此文件的line 51，将 λ 修改为 $  
+"存放目录Cmder\vendor\git-for-windows\etc\profile.d\git-prompt.sh"：此文件的line 53，λ 修改为 $  
+"存放目录Cmder\config\powerline_core.lua"：此文件的line 113，λ 修改为 $  
+其中，第三个文件是高亮插件中的一个文件，如果没有安装高亮插件，只需修改前两个文件即可。  
+4.6 常用快捷键  
+i 打开设置窗口：Win+Alt+P  
+ii 全屏：Alt+Enter  
+iii 新建Tab：Ctrl+t  
+iv 关闭Tab：Ctrl+w  
+v 切换Tab：Ctrl+Tab或Ctrl+1,2...  
+vi 新建Cmd：Shift+Alt+1  
+vii 新建Powershell：Shift+Alt+2  
 
 
