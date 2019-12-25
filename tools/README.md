@@ -162,7 +162,9 @@ viii 快速切换到第n个页签：Ctrl+n
 标题栏是界面的上栏，标签栏是界面的下栏。  
 隐藏标题栏：settings-->General-->Appearance-->Title bar and border options-->hide caption always  
 隐藏标签栏：settings-->General-->Tab bar-->Auto show|Don't show  
-
+4.8 自定义命令  
+打开文件 保存路径/Cmder/config/user-aliases.cmd，把想要自定义的命令输入到这个文件中即可。  
+例如，自定义登陆服务器的命令server：server=ssh username@id  
 
 
 
