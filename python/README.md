@@ -48,68 +48,29 @@ import numpy as np
 沿指定轴将数组分割为子数组，等分或者在指定位置处分割。
 ```
 ## 3 文件路径操作
+3.1 glob模块  
+返回指定目录下指定格式的所有文件路径组成的列表  
 ```python
-# glob模块 
 from glob import glob
-# os.path模块
-from os import path as osp
-# 正则表达式 
+files_path = glob(os.path.join(dir, '*.npz')
+```
+3.2 os.path.basename  
+返回指定文件路径中的文件名  
+```python
+import os
+files_name = os.path.basename(file_path)
+```
+3.3 os.listdir  
+返回指定目录下的所有文件的文件名组成的列表  
+```python
+import os
+files_name = os.listdir(dir)
+```
+3.4 正则表达式  
+返回文件名中前缀（即文件名中除去文件类型的部分）  
+```python
 import re
-例子如下：
-EXPER_PATH = 'G:\\practice\opencv\\testData'
-def get_paths(exper_name):
-    """
-    Return a list of paths to the outputs of the experiment.
-    """
-    return glob(osp.join(EXPER_PATH, 'outputs/{}/*.npz'.format(exper_name)))
-def main():
-    exper_name = 'magicpoint'
-    # 获取文件夹中所有文件的路径，组成列表
-    paths = get_paths(exper_name)
-    print('paths:\n', paths)
-    # 获取路径列表中的各个文件名
-    print('basename_paths:')
-    for path in paths:
-        print(osp.basename(path))
-    # 获取文件名前缀
-    print('basename_prefix_paths:')
-    for path in paths:
-        basename = osp.basename(path)
-        temp = re.findall(r'(.+?)\.', basename)
-        basename_prefix = temp[0]
-        print(basename_prefix)
-
-if __name__ == '__main__':
-    main()
-运行结果：   
-paths:
- ['G:\\practice\\opencv\\testData\\outputs/magicpoint\\1.npz', 'G:\\practice\\opencv\\testData\\outputs/magicpoint\\10.npz',
- 'G:\\practice\\opencv\\testData\\outputs/magicpoint\\2.npz', 'G:\\practice\\opencv\\testData\\outputs/magicpoint\\3.npz',
- 'G:\\practice\\opencv\\testData\\outputs/magicpoint\\4.npz', 'G:\\practice\\opencv\\testData\\outputs/magicpoint\\5.npz', 
- 'G:\\practice\\opencv\\testData\\outputs/magicpoint\\6.npz', 'G:\\practice\\opencv\\testData\\outputs/magicpoint\\7.npz',
- 'G:\\practice\\opencv\\testData\\outputs/magicpoint\\8.npz', 'G:\\practice\\opencv\\testData\\outputs/magicpoint\\9.npz']
-basename_paths:
-1.npz
-10.npz
-2.npz
-3.npz
-4.npz
-5.npz
-6.npz
-7.npz
-8.npz
-9.npz
-basename_prefix_paths:
-1
-10
-2
-3
-4
-5
-6
-7
-8
-9
+file_name_prefix = re.findall(r'(.+?)\.', basename)[0]
 ```
 # 4 with语句
 with语句适用于对资源进行访问的场合，确保不管使用过程中是否发生异常都会执行必要的“清理”操作，释放资源。比如文件使用后自动关闭，
@@ -317,5 +278,9 @@ plt.scatter(x, y, c='green', alpha=0.6)     # 透明度设置为0.6（这样颜�
 plt.scatter(x1, y1, c='blue', alpha=0.6)
 plt.show()
 ```
-
-
+## 17 修改字典中的键名  
+```python
+# 将字典中的键名 a 改成 c
+dict={'a':1, 'b':2}
+dict["c"] = dict.pop("a")
+```
