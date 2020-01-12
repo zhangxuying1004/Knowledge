@@ -63,31 +63,41 @@ Ctrl+Shift+X，在搜索框输入Theme，选择安装自己喜欢的插件。
 ```
 ## 3 jupyter notebook
 3.1 jupyter远程连接服务器
-参考链接[https://blog.csdn.net/luo3300612/article/details/90344634]   
 （1）服务器端设置  
  第一步：安装jupyter notebook   
  ```
  pip install jupyter notebook
  ```
  第二步：设置密码  
+ 打开python编辑器  
+ ```python
+ >>> from notebook.auth import passwd
+ >>> passwd()
+ >>> Enter password:
+ >>> Verify password:
+ 'sha1:********************************'
  ```
- 命令：python 
- from notebook.auth import passwd
- passwd()
- ```
- 输入并确认密码，赋值并保存输出的sha1:...  
+ 要记得自己的密码，并保存生成的密钥sha1:...  
  第三步：生成jupyter配置文件  
  ```
  jupyter notebook --generate-config
  ```
  第四步：修改配置文件  
- ```
- c.NotebookApp.ip = '*'
- c.NotebookApp.password = u'刚才保存的sha1:'
- c.NotebookApp.port = 8000 # 随意
- # c.NotebookApp.notebook_dir = "" # 修改jupyter启动目录，如有需要，则改成自己想要的目录，否则就不用改
+ ```python 
+ # 限定可以访问的ip
+ c.NotebookApp.ip= '*'
+ # 粘贴上面生成的密钥
+ c.NotebookApp.password = u'sha1:**************************************'
  c.NotebookApp.open_browser = False
+ # 设置访问的端口
+ c.NotebookApp.port = 8888
+ 
+ # 配置默认的工作目录，打开浏览器后会默认进入这个目录
+ c.NotebookApp.notebook_dir = '/home/username'
  ```
+ 第五步：启动和关闭jupyter  
+ 启动：开启一个后台程序，如tmux，输入jupyter notebook &  
+ 关闭：进入后台程序，查看进程的pid: ps -aux，杀死进程：sudo kill pid  
 （2）Windows设置   
  第一步：下载安装XShell  
  第二步：再XShell的SSH/隧道选项中添加：   
@@ -96,8 +106,9 @@ Ctrl+Shift+X，在搜索框输入Theme，选择安装自己喜欢的插件。
     帧听端口：8000（随意，只要是不被占用的本地端口）  
     目标主机：目标主机的内网ip，可以通过在服务器输入ifconfig看到，如果这个命令没安装，则使用sudo apt-get install net-tools安装  
     目标端口：刚刚填写的c.NotebookApp.port  
-    
-（3）在服务器上开一个后台，输入jupyter-notebook --allow-root，然后在Google浏览器上输入localhost：之前输入的侦听端口即可。  
+ 第三步：打开Google浏览器，输入localhost：之前输入的侦听端口即可。  
+ （3）另一种访问方式
+ 打开Google浏览器，输入服务器ip：服务器上配置的默认端口号(8888)。  
 3.2 常用快捷键  
 在编辑模式下：  
 Tab：代码补全或缩进  
