@@ -22,16 +22,27 @@ source ~/.bashrc
 ```
 ## 5 xxx is not in the sudoers file.This incident will be reported.的解决方法 
 ```
-1）切换到一个已在sudoers的用户下  
-2）输入命令：sudo vim /etc/sudoers，填写此用户的密码  
+（1）切换到一个已在sudoers的用户下  
+（2）输入命令：sudo vim /etc/sudoers，填写此用户的密码  
 找到这行 root ALL=(ALL) ALL,在他下面添加xxx ALL=(ALL) ALL  
 ```
 ## 6 tmux常用命令  
 ```
-1）启动一个新会话：tmux [new -s 会话名 -n 窗口名]  
-2）列出存在的所有会话：tmux ls  
-3）恢复会话：tmux at [-t 会话名]  
-4）关闭会话：tmux kill-session -t 会话名 
+（1）启动一个新会话：tmux [new -s 会话名 -n 窗口名]  
+（2）列出存在的所有会话：tmux ls  
+（3）恢复会话：tmux at [-t 会话名]  
+（4）关闭会话：tmux kill-session -t 会话名 
+（5）脱离当会话：Ctrl + b，d
+（6）多窗口操作
+Ctrl + b，"，水平分割当前窗格
+Ctrl + b，%，垂直分割当前窗格
+Ctrl + b，x，删除当前窗格
+Ctrl + b，方向键，通过上下左右方向键跳转到对应的窗格
+Ctrl + b，；，跳转到上次激活的窗格
+Ctrl + b，o，跳转到下一个窗格
+Ctrl + b，q，显示各窗口的编号，并输入编号跳转到对应的窗格
+Ctrl + b，{，将当前窗格移动到最左边
+Ctrl + b，}，将当前窗格移动到最右边
 ```
 ## 7 VIM配置
 ```
