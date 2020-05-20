@@ -284,3 +284,24 @@ plt.show()
 dict={'a':1, 'b':2}
 dict["c"] = dict.pop("a")
 ```
+## 18 使用python读取matlab生成的.mat类型的数据
+（1）普通版本的.mat文件，使用sicpy.io读取  
+```python
+import scipy.io
+data = scipy.io.loadmat('filename.mat') 	# data是一个字典类型的数据
+print(data.keys())	# 查看有哪些key，这些key是保存.mat数据时，这个文件包含的matlab变量名
+# 接下来，用访问字典的方式根据需要提取需要的数据
+```
+（2）v7.3版本.mat文件（较大的文件），使用h5py读取  
+```python
+import h5py
+f = h5py.File('filename.mat')
+data = f['key']	# key是保存文件时里面的变量名
+data1 = [item[0] for item in data]	# data1中的数据都是HDF5 object reference，用于在f中索引
+data2 = [f[item][:] for item in data1]	# data2是所需要的array类型的数据
+```
+
+
+
+
+```
