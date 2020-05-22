@@ -146,7 +146,18 @@ pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 easy_install pip
 ```
-## 21 Ubuntu压缩/解压  
+## 21 软链接的建立与删除
+linux下的软链接类似于windows下的快捷方式。 
+（1）软链接的建立  
+```
+ln -s a b
+```
+其中，a就是源文件，b是链接文件名，其作用是当进入b目录，实际上是链接进入了a目录。  
+（2）软链接的删除  
+```
+rm -rf b  # 注意不是rm -rf  b/
+```
+## 22 Ubuntu压缩/解压  
 ```
 .tar
 解包：tar xvf FileName.tar
