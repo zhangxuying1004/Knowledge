@@ -62,7 +62,7 @@ Ctrl+Shift+X，在搜索框输入Theme，选择安装自己喜欢的插件。
 ]
 ```
 ## 3 jupyter notebook
-3.1 jupyter远程连接服务器
+3.1 jupyter远程连接服务器  
 （1）服务器端设置  
  第一步：安装jupyter notebook   
  ```
@@ -106,9 +106,9 @@ Ctrl+Shift+X，在搜索框输入Theme，选择安装自己喜欢的插件。
     帧听端口：8000（随意，只要是不被占用的本地端口）  
     目标主机：目标主机的内网ip，可以通过在服务器输入ifconfig看到，如果这个命令没安装，则使用sudo apt-get install net-tools安装  
     目标端口：刚刚填写的c.NotebookApp.port  
- 第三步：打开Google浏览器，输入localhost：之前输入的侦听端口即可。  
- （3）另一种访问方式
- 打开Google浏览器，输入服务器ip：服务器上配置的默认端口号(8888)。  
+ 第三步：打开本地的Google浏览器，输入localhost：之前输入的侦听端口即可。  
+ （3）另一种访问方式（不需要windows 设置）
+ 打开本地的Google浏览器，输入服务器ip：服务器上配置的默认端口号(8888)。  
 3.2 常用快捷键  
 在编辑模式下：  
 Tab：代码补全或缩进  
