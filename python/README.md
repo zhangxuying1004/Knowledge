@@ -300,8 +300,25 @@ data = f['key']	# key是保存文件时里面的变量名
 data1 = [item[0] for item in data]	# data1中的数据都是HDF5 object reference，用于在f中索引
 data2 = [f[item][:] for item in data1]	# data2是所需要的array类型的数据
 ```
-
-
-
-
+## 19 argparse的使用方法，用命令行获取程序所需的参数  
+第一步：使用argparse包中的ArgumentParser类新建一个parser对象，传入的参数是description，一个字符串，简单描述这个对象。  
+```python
+parser = argparse.ArgumentParser(description='demo of xxx')
 ```
+第二步：使用parser对象中的add_argument方法，往这个对象中添加参数。   
+```python
+parser.add_argument('--variable_name', default=, type=, help='')
+# default赋予变量的默认值，type赋予变量的数据类型，help赋予对变量的描述
+```
+第三步：使用对象的parse_args获取解析的参数对象。   
+```python
+args = parser.parse_args()
+```
+第四步：依次获取对象中的各个成员变量。  
+```python
+variable = args.variable_name
+```
+
+
+
+
