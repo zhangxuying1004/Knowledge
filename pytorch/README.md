@@ -110,5 +110,7 @@ net = model_class()
 net.load_state_dict(torch.load('model_name.pkl'))
 ```
 推荐使用方式二。  
+## 6 运行程序，程序直接退出，并且显示Segmentation fault (core dumped)   
+torch版本问题，可以试着讲torch和对应的torchvision更新到最新的版本。  
 
 
