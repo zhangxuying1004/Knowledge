@@ -318,7 +318,8 @@ args = parser.parse_args()
 ```python
 variable = args.variable_name
 ```
-
-
+注意：parser.add_argument()还可能会用到一个参数action，取值为'store_true'或者'store_false'，这种情况下，变量是一个布尔类型的值，并且运行代码时不需要给变量赋值，要么添加--variable_name，要不什么都不添加。
+当action='store_true'时，添加--variable_name，variable_name会自动被赋值true，什么都不添加，variable_name会自动被赋值false；
+当action='store_false'时，添加--variable_name，variable_name会自动被赋值false，什么都不添加，variable_name会自动被赋值true；
 
 
