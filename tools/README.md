@@ -143,6 +143,12 @@ set LANG=zh_CN.UTF-8
 set LC_ALL=zh_CN.utf8
 chcp utf-8
 ```
+4.4 配置终端的字体颜色：  
+win+R->输入regedit->定位到HKEY_CURRENT_USER\Software\Microsoft\  
+如果这个目录下有Command Processor，则打开，如果没有，则新建Command Processor。  
+修改/新建DefaultColor（类型：REG_DWORD）对象，设置颜色，前景-背景对应字符如下所示：   
+（0=黑、8=灰)、(1=蓝、9=淡蓝)、(2=绿、A=淡绿)、(3=湖蓝色、B=淡浅绿)、(4=红、C=淡红)、(5=紫、D=淡紫)、(6=黄、E=淡黄)、(7=白、F=亮白)   
+终端的颜色配置完成后，cmder也会显示对应的颜色。   
 4.4 字体高亮配置  
 （1）下载并安装字体  
 下载地址：https://github.com/tonsky/FiraCode  
