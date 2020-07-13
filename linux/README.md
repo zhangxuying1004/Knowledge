@@ -1,3 +1,19 @@
+## 0 Ubuntu 16.04下载镜像
+中科大源  
+http://mirrors.ustc.edu.cn/ubuntu-releases/16.04/  
+
+阿里云开源镜像站  
+http://mirrors.aliyun.com/ubuntu-releases/16.04/  
+
+兰州大学开源镜像站  
+http://mirror.lzu.edu.cn/ubuntu-releases/16.04/  
+
+北京理工大学开源  
+http://mirror.bit.edu.cn/ubuntu-releases/16.04/  
+
+浙江大学  
+http://mirrors.zju.edu.cn/ubuntu-releases/16.04/  
+
 ## 1 添加删除用户 
 ```
 （1）添加用户  
