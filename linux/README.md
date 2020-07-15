@@ -173,7 +173,11 @@ ln -s a b
 ```
 rm -rf b  # 注意不是rm -rf  b/
 ```
-## 22 Ubuntu压缩/解压  
+## 22 查看有哪些网络接口
+```
+ls /sys/class/net
+```
+## 100 Ubuntu压缩/解压  
 ```
 .tar
 解包：tar xvf FileName.tar
