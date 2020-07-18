@@ -112,5 +112,7 @@ net.load_state_dict(torch.load('model_name.pkl'))
 推荐使用方式二。  
 ## 6 运行程序，程序直接退出，并且显示Segmentation fault (core dumped)   
 torch版本问题，可以试着讲torch和对应的torchvision更新到最新的版本。  
-
-
+## 7 Module里的children()模块和modules()模块
+children()返回网络模型里最外层的组成元素；    
+modules()返回的是网络模型中的所有元素，即各个级别的子元素。  
+使用迁移学习时，通常使用的是children()  
