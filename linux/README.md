@@ -177,6 +177,15 @@ rm -rf b  # 注意不是rm -rf  b/
 ```
 ls /sys/class/net
 ```
+## 23 程序停了，仍占显存
+```python
+import os
+pid = list(set(os.popen('fuser -v /dev/nvidia*').read().split()))   # * 是显卡号码
+kill_cmd = 'kill -9 ' + ' '.join(pid)
+print(kill_cmd)
+os.popen(kill_cmd)
+```
+
 ## 100 Ubuntu压缩/解压  
 ```
 .tar
