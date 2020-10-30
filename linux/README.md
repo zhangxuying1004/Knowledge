@@ -190,6 +190,11 @@ os.popen(kill_cmd)
 ```python
 sudo fuser -v /dev/nvidia2 |awk '{for(i=1;i<=NF;i++)print "kill -9 " $i;}' | sudo sh
 ```
+## 24 conda 虚拟环境名显示或者消失
+```
+conda config --set changeps1 true   # 显示
+conda config --set changeps1 false  # 消失
+```
 ## 100 Ubuntu压缩/解压  
 ```
 .tar
