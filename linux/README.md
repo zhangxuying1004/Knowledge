@@ -139,30 +139,24 @@ ls -l|grep "^d"| wc -l
 mount [参数] [设备名称] [挂载点]
 umount [参数] [挂载点]
 ```
-## 16 opencv安装
-```
-CUDA version: 9.0.176，CUDNN version: 7.4.2，pyhton==3.6.9环境下，opencv的安装：
-pip install opencv-python==3.3.0.10
-pip install opencv-contrib-python==3.3.0.10
-```
-## 17 查看指定进程的信息  
+## 16 查看指定进程的信息  
 ```
 ps -aux | grep 进程号  
 ```
-## 18 两台ubuntu电脑之间传输文件  
+## 17 两台ubuntu电脑之间传输文件  
 ```
 scp -r /home/wangpf/Report2 mingzi@111.111.111.111:/home/wenjianjia
 ```
-## 19 将pip默认下载源设置为清华镜像  
+## 18 将pip默认下载源设置为清华镜像  
 ```
 pip install -i https://pypi.tuna.tsinghua.edu.cn/simple pip -U
 pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 ```
-## 20 pip安装出现Script file 'D:\Anaconda3\Scripts\pip-script.py' is not present.  
+## 19 pip安装出现Script file 'D:\Anaconda3\Scripts\pip-script.py' is not present.  
 ```
 easy_install pip
 ```
-## 21 软链接的建立与删除
+## 20 软链接的建立与删除
 linux下的软链接类似于windows下的快捷方式。 
 （1）软链接的建立  
 ```
@@ -173,11 +167,11 @@ ln -s a b
 ```
 rm -rf b  # 注意不是rm -rf  b/
 ```
-## 22 查看有哪些网络接口
+## 21 查看有哪些网络接口
 ```
 ls /sys/class/net
 ```
-## 23 程序停了，仍占显存
+## 22 程序停了，仍占显存
 方法1：  
 ```python
 import os
@@ -190,7 +184,7 @@ os.popen(kill_cmd)
 ```python
 sudo fuser -v /dev/nvidia2 |awk '{for(i=1;i<=NF;i++)print "kill -9 " $i;}' | sudo sh
 ```
-## 24 终端命令提示符前缀(conda 虚拟环境名)显示或者消失
+## 23 终端命令提示符前缀(conda 虚拟环境名)显示或者消失
 ```
 conda config --set changeps1 true   # 显示
 conda config --set changeps1 false  # 消失
