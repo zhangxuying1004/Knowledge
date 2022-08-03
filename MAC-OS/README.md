@@ -31,7 +31,25 @@ git config --global --add safe.directory /opt/homebrew/Library/Taps/homebrew/hom
 git config --global --add safe.directory /opt/homebrew/Library/Taps/homebrew/homebrew-cask
 ```
 ## 2 Git
-执行如下命令：
+2.1 安装命令：
 ```
 brew install git
+```
+2.2 配置命令
+```
+git config --global user.name "your gitname"
+git config --global user.email " your email"
+```
+2.3 创建ssh密钥
+执行如下命令：
+```
+ssh-keygen -t rsa -C "your email"
+```
+一直按回车，最后在```～/.ssh/```目录中生成两个文件，即```id_rsa```和```id_rsa.pub```。  
+2.4 设置GitHub
+复制```id_rsa.pub```中的内容，找到```个人GitHub -> Settings -> SSH and GPG keys -> New SSH key```   
+填写title，并将复制的内容粘贴到文本框中。
+2.5 检查是否链接成功
+```
+ssh -T git@github.com
 ```
