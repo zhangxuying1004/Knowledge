@@ -53,3 +53,17 @@ ssh-keygen -t rsa -C "your email"
 ```
 ssh -T git@github.com
 ```
+2.6 常见问题  
+（1）git clone时提示“Empty reply from server”  
+网络设置了代理，使用如下命令取消即可：  
+```
+git config --global --unset http.proxy
+```
+（2）git clone时提示“HTTP/2 stream 1 was not closed cleanly before end of the underlying stream”  
+git默认使用的通信协议出错，使用如下命令进行修改：  
+```
+git config --global http.version HTTP/1.1
+```
+
+
+
