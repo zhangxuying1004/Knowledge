@@ -34,6 +34,7 @@ sudo apt-get remove –purge nvidia*
 ```
 sudo apt-get update
 sudo apt-get install gcc
+sudo apt-get install g++
 sudo apt-get install make
 sudo chmod a+x NVIDIA-Linux-x86_64-xxx.xxx.run
 ```
