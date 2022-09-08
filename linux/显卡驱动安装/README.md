@@ -16,7 +16,11 @@ lspci | grep -i nvidia
 ### 2. 禁用nouveau
 使用命令```lsmod | grep nouveau```查看nouveau是否已被禁用。  
 若有，则直接跳到下一步；  
-若没有，则在文件```/etc/modprobe.d/blacklist.conf ```的末尾处添加```blacklist nouveau```，  
+若没有，则在文件```/etc/modprobe.d/blacklist.conf ```的末尾处添加
+```
+blacklist nouveau
+options nouveau modeset=0
+```
 重启电脑（sudo reboot now）并确认nouveau已被禁用。
 
 
