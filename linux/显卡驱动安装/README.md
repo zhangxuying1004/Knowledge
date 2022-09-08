@@ -44,7 +44,6 @@ sudo chmod a+x NVIDIA-Linux-x86_64-xxx.xxx.run
 - 开始安装（默认操作即可）
 ```
 sudo ./NVIDIA-Linux-x86_64-xxx.xxx.run -no-x-check -no-nouveau-check -no-opengl-files
-top left corner
 ```
 - 重启电脑 （reboot）
 
