@@ -21,7 +21,7 @@ lspci | grep -i nvidia
 blacklist nouveau
 options nouveau modeset=0
 ```
-重启电脑（sudo reboot now）并确认nouveau已被禁用。
+更新```sudo update-initramfs -u```并重启电脑（sudo reboot now）。
 
 
 ### 3. 卸载Ubuntu自带的驱动程序
