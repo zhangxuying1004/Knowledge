@@ -182,3 +182,10 @@ similarity_values = saved_dataset['score'].tolist()
 ```
 这样获得的是列表，而且不会损失维度信息。
 
+# 8 图片读取
+1. PIL  
+将原始图像读取为byte型的数据,此时如果使用pytorch将读取的数据转化为tensor,这个过程中每个像素会除以255,即每个像素在数值上会变为原来的1/255.    
+2. openCV (CV2)  
+将原始图像读取为numpy类型的数据,此时如果使用pytorch将读取的数据转化为tensor,这个过程中,每个像素的数值不变.  
+
+
