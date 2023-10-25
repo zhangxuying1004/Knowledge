@@ -1,4 +1,7 @@
 # pytorch knowledge
+## 0 安装
+`pip install -i https://mirrors.aliyun.com/pypi/simple/  torchvision==0.13.1 --extra-index-url https://download.pytorch.org/whl/cu111`
+
 ## 1 可视化
 （1）使用tensorboardX可视化   
 参考：[https://www.jianshu.com/p/46eb3004beca]  
